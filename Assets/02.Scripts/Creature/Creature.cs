@@ -17,14 +17,21 @@ public abstract class Creature : MonoBehaviour
     public void SetAttackDamage(float attackDamage) { _attackDamage = attackDamage; } 
     public void TakeDamage(float attackDamage) 
     { 
-        if(_health - attackDamage > 0)
+        if(attackDamage <= 0)
         {
-            _health -= attackDamage;
+            return;
         }
-        else if(_health - attackDamage <= 0)
+        else
         {
-            _health = 0;
-            _isDead = true;
+            if (_health - attackDamage > 0)
+            {
+                _health -= attackDamage;
+            }
+            else if (_health - attackDamage <= 0)
+            {
+                _health = 0;
+                _isDead = true;
+            }
         }
     }
 
